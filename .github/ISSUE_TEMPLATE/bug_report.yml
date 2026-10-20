@@ -1,0 +1,54 @@
+name: 缺陷反馈 (Bug Report)
+description: 提交程序错误、运行异常或与预期不符的行为
+title: "fix: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈问题！请尽量提供清晰的复现步骤与上下文日志。
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 清晰简要地说明遇到了什么问题。
+      placeholder: 在调用除法函数时传入 0 抛出了异常...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 能够稳定复现此问题的具体操作。
+      value: |
+        1. 启动服务...
+        2. 调用接口...
+        3. 观察到输出...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+      description: 在没有问题的情况下，程序应当表现出的正常行为。
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 严重程度
+      options:
+        - 低 (Minor / 界面或文案瑕疵)
+        - 中 (Normal / 影响部分非核心功能)
+        - 高 (Critical / 核心链路阻断或崩溃)
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 自查核对
+      options:
+        - label: 我已检索过现有的 Issue，确认没有重复提交
+          required: true
+        - label: 我在最新的 main 分支代码上仍然能复现此问题
+          required: true

@@ -1,0 +1,55 @@
+name: CI Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate-title:
+    name: Validate PR Title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate PR Title Convention
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "Validating PR title: '${TITLE}'"
+          node -e '
+            const title = process.env.TITLE || "";
+            const regex = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._\/-]+\))?!?: [\u4e00-\u9fff].+/;
+            if (!regex.test(title)) {
+              console.error(`::error::PR 标题 "${title}" 必须符合规范，格式应为: <type>(<scope>): <中文描述>，例如: feat(calc): 增加幂运算函数`);
+              process.exit(1);
+            }
+          '
+          echo "✔ PR 标题格式校验通过"
+
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          uv pip install -r pyproject.toml pytest ruff
+
+      - name: Run Ruff Linter
+        run: uv run ruff check .
+
+      - name: Run Pytest
+        run: uv run pytest
