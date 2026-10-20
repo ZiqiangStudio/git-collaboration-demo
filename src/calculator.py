@@ -21,3 +21,10 @@ def divide(a: float, b: float) -> float:
     if b == 0:
         raise ValueError("除数不能为零")
     return a / b
+
+
+def power(base: float, exponent: float) -> float:
+    """计算底数的指数幂。"""
+    if base == 0 and exponent < 0:
+        raise ValueError("零不能作为负指数的底数")
+    return base**exponent

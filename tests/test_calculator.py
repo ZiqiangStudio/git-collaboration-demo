@@ -1,5 +1,5 @@
 import pytest
-from src.calculator import add, divide, multiply, subtract
+from src.calculator import add, divide, multiply, power, subtract
 
 
 def test_add():
@@ -22,3 +22,11 @@ def test_divide():
 def test_divide_by_zero():
     with pytest.raises(ValueError, match="除数不能为零"):
         divide(5, 0)
+
+
+def test_power():
+    assert power(2, 3) == 8
+    assert power(9, 0.5) == 3
+    assert power(2, 0) == 1
+    with pytest.raises(ValueError, match="零不能作为负指数的底数"):
+        power(0, -2)
