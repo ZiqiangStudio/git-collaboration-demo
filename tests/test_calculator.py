@@ -3,10 +3,10 @@ import pytest
 from src.calculator import (
     add,
     divide,
+    is_prime,
     multiply,
     power,
     subtract,
-    is_prime,
 )
 
 

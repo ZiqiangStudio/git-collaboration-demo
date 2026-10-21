@@ -1,5 +1,5 @@
 """计算器核心业务模块，供协作演练使用。"""
-
+import math
 
 def add(a: float, b: float) -> float:
     """两数求和。"""
@@ -30,7 +30,7 @@ def power(base: float, exponent: float) -> float:
     return base**exponent
 
 
-import math
+
 
 
 def is_prime(n):
