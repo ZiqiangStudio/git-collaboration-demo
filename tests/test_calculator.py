@@ -1,6 +1,13 @@
 import pytest
 
-from src.calculator import add, divide, multiply, power, subtract, is_prime
+from src.calculator import (
+    add,
+    divide,
+    multiply,
+    power,
+    subtract,
+    is_prime,
+)
 
 
 def test_add():
@@ -34,20 +41,19 @@ def test_power():
 
 
 def test_is_prime():
-    # 典型质数
     assert is_prime(2) is True
     assert is_prime(13) is True
     assert is_prime(97) is True
 
-    # 合数
+
     assert is_prime(4) is False
     assert is_prime(100) is False
 
-    # 边界值
+
     assert is_prime(-5) is False
     assert is_prime(0) is False
     assert is_prime(1) is False
 
-    # 非法输入抛异常
+
     with pytest.raises(TypeError):
         is_prime(3.14)
