@@ -1,5 +1,7 @@
 import pytest
+
 from src.calculator import add, divide, multiply, power, subtract, is_prime
+
 
 def test_add():
     assert add(1, 2) == 3
@@ -29,8 +31,6 @@ def test_power():
     assert power(2, 0) == 1
     with pytest.raises(ValueError, match="零不能作为负指数的底数"):
         power(0, -2)
-
-
 
 
 def test_is_prime():
