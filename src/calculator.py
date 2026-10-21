@@ -28,3 +28,27 @@ def power(base: float, exponent: float) -> float:
     if base == 0 and exponent < 0:
         raise ValueError("零不能作为负指数的底数")
     return base**exponent
+
+
+import math
+
+
+def is_prime(n):
+    # 边界处理：n < 2 返回 False
+    if not isinstance(n, int) or isinstance(n, bool):
+        raise TypeError("输入必须是整数")
+
+    if n < 2:
+        return False
+
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+
+    # 试除法，只检查到 √n，跳过偶数
+    for i in range(3, int(math.isqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+
+    return True
