@@ -1,7 +1,5 @@
 import pytest
-
-from src.calculator import add, divide, multiply, power, subtract
-
+from src.calculator import add, divide, multiply, power, subtract, is_prime
 
 def test_add():
     assert add(1, 2) == 3
@@ -33,8 +31,6 @@ def test_power():
         power(0, -2)
 
 
-import pytest
-from src.calculator import is_prime
 
 
 def test_is_prime():
