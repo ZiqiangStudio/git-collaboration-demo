@@ -1,6 +1,7 @@
 """计算器核心业务模块，供协作演练使用。"""
 import math
 
+
 def add(a: float, b: float) -> float:
     """两数求和。"""
     return a + b
